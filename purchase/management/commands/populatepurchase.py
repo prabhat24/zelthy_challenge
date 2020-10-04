@@ -56,8 +56,8 @@ class Command(BaseCommand):
             ]
             req_avg = 7
             len_names = len(names)
-            records = 50
-            hash = [0] * (len_names + 1)
+            records = 1000
+            hash = [5] * (len_names + 1)
 
             make_avg_7(records, hash)
             hash = [10 * i for i in hash]

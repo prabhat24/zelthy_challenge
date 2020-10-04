@@ -1,4 +1,7 @@
 ### setup
+* create python environment and install requirements <br>
+`pip install -r requirements.txt`
+
 * requirement - postgres database.
 ```
 docker-compose -f db_compose.yml up -d
