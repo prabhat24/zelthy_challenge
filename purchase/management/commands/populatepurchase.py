@@ -1,7 +1,7 @@
 import datetime
 import logging
 import random
-
+from collections import deque
 from django.core.management import BaseCommand
 
 from purchase.models import Purchase, PurchaseStatus
@@ -82,12 +82,12 @@ class Command(BaseCommand):
             return s
 
         def random_date(start, end, length):
-            rand_sec = []
+            rand_sec = deque()
             total_sec = int((end - start).total_seconds())
             for _ in range(length):
                 sec = random.randint(0, total_sec)
-                rand_sec.append(sec)
-            rand_sec.sort()
+                rand_sec.appendleft(sec)
+                total_sec = sec
             rand_date = []
             for i in range(length):
                 rand_date.append(start + datetime.timedelta(seconds=rand_sec[i]))
