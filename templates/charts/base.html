@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>ECharts Sample</title>
+    {#    https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.min.js#}
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+</head>
+<body>
+
+<div>
+    <form action="{% url 'show_chart' %}" method="POST">
+        {% csrf_token %}
+      <label>start date:</label>
+      <input type="date" id="start_date" name="start_date">
+      <input type="submit">
+    </form>
+</div>
+<div id="chart" style="width: 500px; height: 350px;"></div>
+<script>
+    var chart = document.getElementById('chart');
+    var myChart = echarts.init(chart);
+    var option = {
+        title: {text: 'Frequency vs Time'},
+        tooltip: {},
+        legend: {data: ['Frequency']},
+        xAxis: {data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]},
+        yAxis: {},
+        series: [{
+            name: 'Frequency',
+            type: 'bar',
+            data: {{ frequency }}
+        }]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>
+
