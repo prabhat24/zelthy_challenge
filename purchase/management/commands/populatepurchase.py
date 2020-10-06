@@ -57,10 +57,10 @@ class Command(BaseCommand):
             req_avg = 7
             len_names = len(names)
             records = 1000
-            hash = [5] * (len_names + 1)
+            hash = [0] * (len_names + 1)
 
             make_avg_7(records, hash)
-            hash = [10 * i for i in hash]
+            hash = [5 * i for i in hash]
             print(sum(hash))
             for i, name in enumerate(names):
                 for _ in range(hash[i + 1]):
